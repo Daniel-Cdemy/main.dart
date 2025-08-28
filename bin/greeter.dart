@@ -18,71 +18,84 @@ $vorname $nachname*/
 import 'dart:io';
 
 void main() {
-  String? firstNameInput;
-  String? lastNameInput;
-  String? ageInput;
-  String? genderInput;
-
-  void getFirstName() {
-    bool onlyLettersFirstName = RegExp(
-      r'^[a-zA-ZäöüÄÖÜß]+$',
-    ).hasMatch(firstNameInput ?? "");
+  String getFirstName() {
+    String firstNameInput = '';
     do {
       print("Bitte geben Sie Ihren Vornamen ein:");
-      firstNameInput = stdin.readLineSync();
-      if (firstNameInput == null || !onlyLettersFirstName) {
+      firstNameInput = stdin.readLineSync() ?? '';
+      bool onlyLettersFirstName = RegExp(
+        r'^[a-zA-ZäöüÄÖÜß]+$',
+      ).hasMatch(firstNameInput);
+      if (firstNameInput.isEmpty || !onlyLettersFirstName) {
         print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
       }
-    } while (firstNameInput == null || !onlyLettersFirstName);
+    } while (firstNameInput.trim().isEmpty ||
+        !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput.trim()));
+    return firstNameInput;
   }
 
-  void getLastName() {
-    bool onlyLettersLastName = RegExp(
-      r'^[a-zA-ZäöüÄÖÜß]+$',
-    ).hasMatch(lastNameInput ?? "");
+  String getLastName() {
+    String lastNameInput = '';
     do {
       print("Bitte geben Sie Ihren Nachnamen ein:");
-      lastNameInput = stdin.readLineSync();
-      if (lastNameInput == null || !onlyLettersLastName) {
+      lastNameInput = stdin.readLineSync() ?? '';
+      bool onlyLettersLastName = RegExp(
+        r'^[a-zA-ZäöüÄÖÜß]+$',
+      ).hasMatch(lastNameInput);
+      if (lastNameInput.isEmpty || !onlyLettersLastName) {
         print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
       }
-    } while (lastNameInput == null || !onlyLettersLastName);
+    } while (lastNameInput.trim().isEmpty ||
+        !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput.trim()));
+    return lastNameInput;
   }
 
-  void getAge() {
-    int? age = int.tryParse(ageInput ?? "");
-    bool onlyNumbers = RegExp(r'^[0-9]+$').hasMatch(ageInput ?? "");
+  int getAge() {
+    String ageInput = '';
+    int? age;
     do {
       print("Bitte geben Sie Ihr Alter ein:");
-      ageInput = stdin.readLineSync();
-      if (ageInput == null || !onlyNumbers) {
+      ageInput = stdin.readLineSync() ?? '';
+      bool onlyNumbers = RegExp(r'^[0-9]+$').hasMatch(ageInput);
+      age = int.tryParse(ageInput);
+      if (ageInput.isEmpty ||
+          !onlyNumbers ||
+          age == null ||
+          age < 0 ||
+          age > 150) {
         print(
           "Eingabefeld darf nicht leer sein und muss eine Zahl zwischen 0 und 150 sein",
         );
       }
-    } while (ageInput == null || !onlyNumbers);
+    } while (ageInput.isEmpty || age == null || age < 0 || age > 150);
+    return age;
   }
 
-  void getGender() {
-    bool onlyLettersGender = RegExp(r'^[mwnMWN]+$').hasMatch(genderInput ?? "");
-    do {
-      print(
-        'Bitte geben Sie Ihr Geschlecht an (Männlich = "m", Weiblich = "w", Keine Angabe = "n":',
-      );
-      genderInput = stdin.readLineSync();
-      if (genderInput == null || !onlyLettersGender) {
-        print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
-      }
-    } while (genderInput == null || !onlyLettersGender);
-  }
+  // String getGender() {
+  //   String genderInput = '';
+  //   // String male =
+  //   // String female =
+  //   // String nA =
+  //   do {
+  //     print(
+  //       'Bitte geben Sie Ihr Geschlecht an (Männlich = "m", Weiblich = "w", Keine Angabe = "n":',
+  //     );
+  //     bool onlyLettersGender = RegExp(r'^[mwnMWN]+$').hasMatch(genderInput);
+  //     genderInput = stdin.readLineSync() ?? '';
+  //     if (genderInput.isEmpty || !onlyLettersGender) {
+  //       print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
+  //     }
+  //   } while (genderInput.isEmpty || !onlyLettersGender);
+  //   return
+  // }
 
-  void output() {
-    DateTime date = DateTime.now();
-  }
+  // void output() {
+  //   DateTime date = DateTime.now();
+  // }
 
   getFirstName();
   getLastName();
   getAge();
-  getGender();
-  output();
+  // getGender();
+  // output();
 }
