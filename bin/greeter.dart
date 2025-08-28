@@ -71,23 +71,24 @@ void main() {
     return age;
   }
 
-  // String getGender() {
-  //   String genderInput = '';
-  //   // String male =
-  //   // String female =
-  //   // String nA =
-  //   do {
-  //     print(
-  //       'Bitte geben Sie Ihr Geschlecht an (Männlich = "m", Weiblich = "w", Keine Angabe = "n":',
-  //     );
-  //     bool onlyLettersGender = RegExp(r'^[mwnMWN]+$').hasMatch(genderInput);
-  //     genderInput = stdin.readLineSync() ?? '';
-  //     if (genderInput.isEmpty || !onlyLettersGender) {
-  //       print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
-  //     }
-  //   } while (genderInput.isEmpty || !onlyLettersGender);
-  //   return
-  // }
+  String getGender() {
+    String genderInput = '';
+    do {
+      print(
+        'Bitte geben Sie Ihr Geschlecht an (Männlich = "m", Weiblich = "w", Keine Angabe = "n":',
+      );
+      bool onlyLettersGender = RegExp(r'^[mwnMWN]+$').hasMatch(genderInput);
+      genderInput = stdin.readLineSync() ?? '';
+      if (genderInput.isEmpty || !onlyLettersGender) {
+        print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
+      }
+    } while (genderInput.trim().isEmpty ||
+        !RegExp(r'^[mMwWnN]$').hasMatch(genderInput.trim()));
+    final gender = genderInput.trim().toLowerCase();
+    if (gender == 'm') return 'Herr';
+    if (gender == 'w') return 'Frau';
+    return '';
+  }
 
   // void output() {
   //   DateTime date = DateTime.now();
@@ -96,6 +97,6 @@ void main() {
   getFirstName();
   getLastName();
   getAge();
-  // getGender();
+  getGender();
   // output();
 }
