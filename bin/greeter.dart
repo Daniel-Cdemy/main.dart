@@ -20,13 +20,12 @@ import 'dart:io';
 void main() {
   String getFirstName() {
     String firstNameInput = '';
+    bool ok;
     do {
       print("Bitte geben Sie Ihren Vornamen ein:");
       firstNameInput = stdin.readLineSync() ?? '';
-      bool onlyLettersFirstName = RegExp(
-        r'^[a-zA-ZäöüÄÖÜß]+$',
-      ).hasMatch(firstNameInput);
-      if (firstNameInput.isEmpty || !onlyLettersFirstName) {
+      ok = RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput);
+      if (firstNameInput.isEmpty || !ok) {
         print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
       }
     } while (firstNameInput.trim().isEmpty ||
@@ -36,13 +35,12 @@ void main() {
 
   String getLastName() {
     String lastNameInput = '';
+    bool ok;
     do {
       print("Bitte geben Sie Ihren Nachnamen ein:");
       lastNameInput = stdin.readLineSync() ?? '';
-      bool onlyLettersLastName = RegExp(
-        r'^[a-zA-ZäöüÄÖÜß]+$',
-      ).hasMatch(lastNameInput);
-      if (lastNameInput.isEmpty || !onlyLettersLastName) {
+      ok = RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput);
+      if (lastNameInput.isEmpty || !ok) {
         print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
       }
     } while (lastNameInput.trim().isEmpty ||
@@ -73,30 +71,48 @@ void main() {
 
   String getGender() {
     String genderInput = '';
+    bool ok;
     do {
       print(
-        'Bitte geben Sie Ihr Geschlecht an (Männlich = "m", Weiblich = "w", Keine Angabe = "n":',
+        'Bitte geben Sie Ihr Geschlecht an: Männlich [m] / Weiblich [w] / Keine Angabe [n]',
       );
-      bool onlyLettersGender = RegExp(r'^[mwnMWN]+$').hasMatch(genderInput);
       genderInput = stdin.readLineSync() ?? '';
-      if (genderInput.isEmpty || !onlyLettersGender) {
-        print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
+      ok = RegExp(r'^[mMwWnN]$').hasMatch(genderInput.trim());
+
+      if (genderInput.trim().isEmpty || !ok) {
+        print('Eingabe muss m / w / n sein (kein Leerzeichen, ein Zeichen).');
       }
-    } while (genderInput.trim().isEmpty ||
-        !RegExp(r'^[mMwWnN]$').hasMatch(genderInput.trim()));
+    } while (genderInput.trim().isEmpty || !ok);
     final gender = genderInput.trim().toLowerCase();
     if (gender == 'm') return 'Herr';
     if (gender == 'w') return 'Frau';
     return '';
   }
 
-  // void output() {
-  //   DateTime date = DateTime.now();
-  // }
+  String tageszeitLabel(DateTime now) {
+    final hour = now.hour;
+    if (hour >= 10 && hour < 18) return 'Tag';
+    if (hour >= 18 || hour < 2) return 'Abend';
+    return 'Morgen';
+  }
 
-  getFirstName();
-  getLastName();
-  getAge();
-  getGender();
-  // output();
+  void output() {
+    final vorname = getFirstName();
+    final nachname = getLastName();
+    final alter = getAge();
+    final anrede = getGender();
+    final zeit = tageszeitLabel(DateTime.now());
+
+    String text;
+    if (alter < 40) {
+      text = 'Hallo, $vorname';
+    } else {
+      final nameTeil = anrede.isEmpty
+          ? '$vorname $nachname'
+          : '$anrede $nachname';
+      text = 'Guten $zeit,\n$nameTeil';
+    }
+
+    print(text);
+  }
 }
