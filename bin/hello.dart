@@ -1,3 +1,7 @@
 void main(List<String> arguments) {
-  print('Hallo $arguments!');
+  if (arguments.isNotEmpty) {
+    print('Hallo ${arguments.join(' ')}!');
+  } else {
+    print('Hallo!');
+  }
 }
