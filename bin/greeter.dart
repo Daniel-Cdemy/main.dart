@@ -2,20 +2,20 @@ import 'dart:io';
 import 'dart:convert';
 
 void main() {
-  final vorname = getFirstName();
-  final nachname = getLastName();
-  final alter = getAge();
-  final anrede = getGender();
-  final zeit = tageszeitLabel(DateTime.now());
+  final firstName = getFirstName();
+  final lastName = getLastName();
+  final age = getAge();
+  final gender = getGender();
+  final dayTime = daytimeLabel(DateTime.now());
 
   String text;
-  if (alter < 40) {
-    text = 'Hallo, $vorname';
+  if (age < 40) {
+    text = 'Hallo, $firstName';
   } else {
-    final nameTeil = anrede.isEmpty
-        ? '$vorname $nachname'
-        : '$anrede $nachname';
-    text = 'Guten $zeit,\n$nameTeil';
+    final nameTeil = gender.isEmpty
+        ? '$firstName $lastName'
+        : '$gender $lastName';
+    text = 'Guten $dayTime,\n$nameTeil';
   }
 
   print(text);
@@ -92,7 +92,7 @@ String getGender() {
   return '';
 }
 
-String tageszeitLabel(DateTime now) {
+String daytimeLabel(DateTime now) {
   final hour = now.hour;
   if (hour >= 10 && hour < 18) return 'Tag';
   if (hour >= 18 || hour < 2) return 'Abend';
