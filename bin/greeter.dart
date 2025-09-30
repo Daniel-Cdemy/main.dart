@@ -29,7 +29,9 @@ String getFirstName() {
     firstNameInput = stdin.readLineSync(encoding: utf8) ?? '';
     ok = RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput);
     if (firstNameInput.isEmpty || !ok) {
-      print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
+      print(
+        "Das Eingabefeld darf nicht leer sein und keine Zahlen oder ein Leerzeichen enthalten",
+      );
     }
   } while (firstNameInput.trim().isEmpty ||
       !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput.trim()));
@@ -44,7 +46,9 @@ String getLastName() {
     lastNameInput = stdin.readLineSync(encoding: utf8) ?? '';
     ok = RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput);
     if (lastNameInput.isEmpty || !ok) {
-      print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
+      print(
+        "Das Eingabefeld darf nicht leer sein und keine Zahlen oder ein Leerzeichen enthalten",
+      );
     }
   } while (lastNameInput.trim().isEmpty ||
       !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput.trim()));
@@ -65,7 +69,7 @@ int getAge() {
         age < 0 ||
         age > 150) {
       print(
-        "Eingabefeld darf nicht leer sein und muss eine Zahl zwischen 0 und 150 sein",
+        "Das Eingabefeld darf nicht leer sein und muss eine Zahl zwischen 0 und 150 sein",
       );
     }
   } while (ageInput.isEmpty || age == null || age < 0 || age > 150);
