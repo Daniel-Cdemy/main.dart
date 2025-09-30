@@ -12,10 +12,10 @@ void main() {
   if (age < 40) {
     text = 'Hallo, $firstName';
   } else {
-    final nameTeil = gender.isEmpty
+    final displayName = gender.isEmpty
         ? '$firstName $lastName'
         : '$gender $lastName';
-    text = 'Guten $dayTime,\n$nameTeil';
+    text = 'Guten $dayTime,\n$displayName';
   }
 
   print(text);
