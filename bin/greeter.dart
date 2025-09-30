@@ -83,7 +83,7 @@ String getGender() {
     ok = RegExp(r'^[mMwWnN]$').hasMatch(genderInput.trim());
 
     if (genderInput.trim().isEmpty || !ok) {
-      print('Eingabe muss m / w / n sein (kein Leerzeichen, nur ein Zeichen).');
+      print('Eingabe muss m / w / n sein. (Nur ein Zeichen)');
     }
   } while (genderInput.trim().isEmpty || !ok);
   final gender = genderInput.trim().toLowerCase();
