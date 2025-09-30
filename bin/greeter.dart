@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 void main() {
   final vorname = getFirstName();
@@ -25,7 +26,7 @@ String getFirstName() {
   bool ok;
   do {
     print("Bitte geben Sie Ihren Vornamen ein:");
-    firstNameInput = stdin.readLineSync() ?? '';
+    firstNameInput = stdin.readLineSync(encoding: utf8) ?? '';
     ok = RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput);
     if (firstNameInput.isEmpty || !ok) {
       print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
@@ -40,7 +41,7 @@ String getLastName() {
   bool ok;
   do {
     print("Bitte geben Sie Ihren Nachnamen ein:");
-    lastNameInput = stdin.readLineSync() ?? '';
+    lastNameInput = stdin.readLineSync(encoding: utf8) ?? '';
     ok = RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput);
     if (lastNameInput.isEmpty || !ok) {
       print("Eingabefeld darf nicht leer sein und keine Zahlen enthalten");
