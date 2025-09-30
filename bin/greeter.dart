@@ -99,6 +99,6 @@ String getGender() {
 String daytimeLabel(DateTime now) {
   final hour = now.hour;
   if (hour >= 10 && hour < 18) return 'Tag';
-  if (hour >= 18 || hour < 2) return 'Abend';
+  if (hour >= 18 && hour < 2) return 'Abend';
   return 'Morgen';
 }
