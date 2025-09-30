@@ -10,12 +10,12 @@ void main() {
 
   String text;
   if (age < 40) {
-    text = 'Hallo, $firstName';
+    text = 'Hallo, $firstName!';
   } else {
     final displayName = gender.isEmpty
         ? '$firstName $lastName'
         : '$gender $lastName';
-    text = 'Guten $dayTime,\n$displayName';
+    text = 'Guten $dayTime,\n$displayName!';
   }
 
   print(text);
