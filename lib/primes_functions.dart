@@ -5,7 +5,9 @@ int getInt() {
   String rawInput = '';
   int? intInput;
   do {
-    print("Bitte geben Sie eine Zahl ein:");
+    print(
+      "Bitte geben Sie eine Zahl ein, um zu prüfen wie viele Primzahlen darin enthalten sind:",
+    );
     rawInput = stdin.readLineSync(encoding: utf8) ?? '';
     bool onlyNumbers = RegExp(r'^[0-9]+$').hasMatch(rawInput);
     intInput = int.tryParse(rawInput);

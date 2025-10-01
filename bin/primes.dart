@@ -2,15 +2,17 @@ import 'package:main_dart/primes_functions.dart';
 import 'dart:math';
 
 void main() {
-  final inputLimit = getInt();
-  if (inputLimit < 2) {
+  final intInput = getInt();
+  if (intInput < 2) {
     print('Keine Primzahl gefunden');
+    return;
   }
-  if (inputLimit == 2) {
-    print('Primzahlen: 2');
+  if (intInput == 2) {
+    print('Primzahlen (1): 2');
+    return;
   }
   final primes = <int>[2];
-  for (var numberToTest = 3; numberToTest <= inputLimit; numberToTest += 2) {
+  for (var numberToTest = 3; numberToTest <= intInput; numberToTest += 2) {
     var hasDivisor = false;
     for (
       var primeIndex = 0;
