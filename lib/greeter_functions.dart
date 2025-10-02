@@ -13,8 +13,8 @@ String getFirstName() {
         "Das Eingabefeld darf nicht leer sein und keine Zahlen oder ein Leerzeichen enthalten",
       );
     }
-  } while (firstNameInput.trim().isEmpty ||
-      !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput.trim()));
+  } while (firstNameInput.isEmpty ||
+      !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(firstNameInput));
   return firstNameInput;
 }
 
@@ -30,8 +30,8 @@ String getLastName() {
         "Das Eingabefeld darf nicht leer sein und keine Zahlen oder ein Leerzeichen enthalten",
       );
     }
-  } while (lastNameInput.trim().isEmpty ||
-      !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput.trim()));
+  } while (lastNameInput.isEmpty ||
+      !RegExp(r'^[a-zA-ZäöüÄÖÜß]+$').hasMatch(lastNameInput));
   return lastNameInput;
 }
 
