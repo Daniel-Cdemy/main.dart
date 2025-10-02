@@ -8,7 +8,7 @@ void main() {
     return;
   }
   if (intInput == 2) {
-    print('Primzahlen (1): 2');
+    print('Primzahlen: 2 \nGesamt: (1)');
     return;
   }
   final primes = <int>[2];
@@ -29,5 +29,5 @@ void main() {
       primes.add(numberToTest);
     }
   }
-  print('Primzahlen (${primes.length}): ${primes.join(', ')}');
+  print('Primzahlen: ${primes.join(', ')} \nGesamt: (${primes.length})');
 }
