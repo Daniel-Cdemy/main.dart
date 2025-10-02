@@ -10,7 +10,7 @@ String compress(String uncompressed) {
     } else {
       result += compressPart(currentChar, currentCharcount);
       currentChar = char;
-      currentCharcount + 1;
+      currentCharcount = 1;
     }
   }
   result += compressPart(currentChar, currentCharcount);
